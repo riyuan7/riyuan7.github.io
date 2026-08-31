@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>证明签发 - 实务简报第002期（2026年2月）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+  }
+  /* 顶部封面 */
+  .header {
+    background: linear-gradient(135deg, #1a56a0 0%, #2d7dd2 100%);
+    color: #fff;
+    text-align: center;
+    padding: 36px 20px 30px;
+  }
+  .header .subtitle { font-size: 13px; color: #cce0f5; letter-spacing: 2px; margin-bottom: 8px; }
+  .header h1 { font-size: 26px; font-weight: bold; margin-bottom: 6px; }
+  .header .period { font-size: 13px; color: #cce0f5; }
+  .header .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    font-size: 11px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 14px;
+  }
+  /* 内容区 */
+  .content { padding: 16px 16px 20px; }
+  /* 摘要卡片 */
+  .summary-card {
+    background: #fff3e0;
+    border-left: 4px solid #e67e22;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .summary-card h3 { font-size: 14px; color: #e67e22; margin-bottom: 8px; }
+  .summary-card p { font-size: 13px; color: #5d4037; line-height: 1.8; }
+  /* 提示条 */
+  .tip-bar {
+    background: #fff8e1;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #8d6e00;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  /* 板块标题 */
+  .section-title {
+    font-size: 17px;
+    font-weight: bold;
+    border-left: 4px solid;
+    padding-left: 10px;
+    margin: 20px 0 12px;
+  }
+  .section-title.blue { color: #1a56a0; border-color: #1a56a0; }
+  .section-title.red { color: #c62828; border-color: #c62828; }
+  .section-title.orange { color: #e67e22; border-color: #e67e22; }
+  .section-title.purple { color: #6a1b9a; border-color: #6a1b9a; }
+  /* 条目卡片 */
+  .item-card {
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .item-card.blue { background: #f0f5ff; }
+  .item-card.red { background: #fff5f5; }
+  .item-card.orange { background: #fff3e0; }
+  .item-card.purple { background: #f3e5f5; }
+  .item-card h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .item-card.blue h4 { color: #1a56a0; }
+  .item-card.red h4 { color: #c62828; }
+  .item-card.orange h4 { color: #e67e22; }
+  .item-card.purple h4 { color: #6a1b9a; }
+  .item-card .meta {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .item-card p {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+  }
+  .item-card .highlight {
+    color: #c62828;
+    font-weight: bold;
+  }
+  .item-card a.source-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #1a56a0;
+    text-decoration: none;
+    background: rgba(26,86,160,0.08);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .item-card a.source-link:hover {
+    background: rgba(26,86,160,0.15);
+    text-decoration: underline;
+  }
+  /* 讨论区 */
+  .discuss-card {
+    background: #e8f8f5;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .discuss-card h3 { font-size: 15px; color: #0e6655; margin-bottom: 10px; }
+  .discuss-card p {
+    font-size: 13px;
+    color: #333;
+    line-height: 2;
+  }
+  .discuss-card .encourage {
+    color: #0e6655;
+    font-weight: bold;
+    margin-top: 6px;
+  }
+  /* 原文链接汇总 */
+  .links-summary {
+    background: #e8f5e9;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .links-summary h3 {
+    font-size: 15px;
+    color: #2e7d32;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .links-summary .link-group {
+    margin-bottom: 10px;
+  }
+  .links-summary .link-group h4 {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .links-summary ol {
+    padding-left: 20px;
+  }
+  .links-summary li {
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 4px;
+  }
+  .links-summary a {
+    color: #2e7d32;
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .links-summary a:hover { text-decoration: underline; }
+  /* 免责声明 */
+  .disclaimer {
+    background: #fafafa;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .disclaimer strong { color: #666; }
+  /* 底部 */
+  .footer {
+    background: #1a56a0;
+    color: #cce0f5;
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+  }
+  /* 响应式 */
+  @media (max-width: 480px) {
+    .header h1 { font-size: 22px; }
+    .content { padding: 12px 12px 16px; }
+    .item-card { padding: 10px 12px; }
+    .item-card h4 { font-size: 13px; }
+    .item-card p { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 顶部封面 -->
+  <div class="header">
+    <div class="subtitle">【证明签发】实务简报</div>
+    <h1>第 002 期</h1>
+    <div class="period">监测周期：2026年2月</div>
+    <div class="tag">2政策 · 1通报 · 1司法 · 2诉求</div>
+  </div>
+
+  <div class="content">
+
+    <!-- 本期摘要 -->
+    <div class="summary-card">
+      <h3>📌 本期速览</h3>
+      <p>2026年2月，死亡证明领域迎来<strong>13年来最大制度重构</strong>：五部门联合发布国卫规划发〔2026〕5号文，7月1日起全国统一新版证明，死因明确须1日内签发。与此同时，一起<strong>把"自杀溺亡"写成"焦虑"被罚6万</strong>的通报，与多起基层口径打架、证明开给非亲属的诉求，构成新规落地前最真实的底色。</p>
+    </div>
+
+    <!-- 提示条 -->
+    <div class="tip-bar">
+      💡 提示：本期内容整理自公开渠道，每条末尾"查看原文"可点击跳转真实来源，文末附全部链接汇总。仅供签发人员业务学习警示，实际执行以属地卫健、疾控正式文件为准。
+    </div>
+
+    <!-- 一、政策动态 -->
+    <h2 class="section-title blue">🔵 一、政策动态（2条）</h2>
+
+    <div class="item-card blue">
+      <h4>▸ 五部门联合发文：全国统一《死亡证明》7月1日起启用，死因明确须1日内签发</h4>
+      <div class="meta">2026-02-27 · 国家卫健委/公安部/民政部/国家中医药局/国家疾控局</div>
+      <p>《关于加强居民死亡医学证明信息登记和电子证照管理工作的通知》（国卫规划发〔2026〕5号）发布，核心要点：① 2026年7月1日起全国统一《死亡证明》样式与编码规则，以公民身份号码为主编码；② 纸质版与电子证照<strong>同等法律效力</strong>，2027年1月1日起逐步同步签发；③ 死因明确的正常死亡，应于死亡发生或家属申报后<strong>1日内签发</strong>；④ 信息有误可重新签发1次、纸质版遗失可补发1次；⑤ 2013年57号文、2014年68号文自2026年7月1日起失效。</p>
+      <a href="https://www.nhc.gov.cn/guihuaxxs/c100133/202602/9daacc59b8494be99a04e1b1fcc69247.shtml" class="source-link" target="_blank">🔗 通知全文（国家卫健委）</a>
+    </div>
+
+    <div class="item-card blue">
+      <h4>▸ 国家卫健委政策解读：7月1日起全国统一新版《死亡证明》，纸电同效、1日签发</h4>
+      <div class="meta">2026-02-27 · 国家卫健委规划发展与信息化司</div>
+      <p>对国卫规划发〔2026〕5号文的官方解读，明确此次制度调整的重点：① 统一全国《死亡证》<strong>样式与编码规则</strong>，以公民身份号码为主编码，解决各地证明样式不一、信息无法跨省共享的问题；② 纸质版与电子证照<strong>具有同等法律效力</strong>，2027年起逐步同步签发；③ 死因明确的正常死亡须<strong>1日内签发</strong>，方便家属办理户籍注销、殡葬、保险理赔等后续事项；④ 信息有误可重新签发、纸质版遗失可补发，明确责任边界与纠错机制。</p>
+      <a href="https://www.nhc.gov.cn/guihuaxxs/c100132/202602/61a1b698f5934b358e6223dbe1b552ce.shtml" class="source-link" target="_blank">🔗 政策解读（国家卫健委）</a>
+    </div>
+
+    <!-- 二、通报案例 -->
+    <h2 class="section-title red">🔴 二、通报案例（1条）</h2>
+
+    <div class="item-card red">
+      <h4>▸ 把"自杀溺亡"写成"焦虑"：卫生院开死亡证明被罚6万元，涉事医师罚1万元</h4>
+      <div class="meta">2026-02-27 · 某卫生健康局行政处罚</div>
+      <p>执法部门调查发现，某卫生院为<strong>院外死亡</strong>的陈某某开具《居民死亡医学证明（推断）书》，其上填写的直接死亡原因为"焦虑"，与实际情况"<strong>自杀溺亡</strong>"不一致，构成出具虚假医学证明文件的违法事实。<br>处罚结果：卫生院警告+罚款<strong>60000元</strong>（依据《医疗机构管理条例》第三十一条、第四十八条）；涉事医师柯某警告+罚款<strong>10000元</strong>（依据《医师法》第二十四条第二款、第五十六条第（二）项）。</p>
+      <a href="https://www.sohu.com/a/992124324_121106991" class="source-link" target="_blank">🔗 查看原文（莆田疾控·搜狐转载）</a>
+      &nbsp;
+      <a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1788139386&amp;ver=6937&amp;signature=EaT-c*1qBDge5nxCbTmE3SPIC91p082C21cL0CZKMdc6Ckf*Ml7aARmXFg9gY5r2LL-fxJCdZ2XbuG6fYMoL4qcSETeV94Go*5qs8vfKUjcyzxgi9MS3liuquRH8ZgNr&amp;new=1" class="source-link" target="_blank">🔗 典型案例（健康阳泉）</a>
+    </div>
+
+    <!-- 三、司法案件 -->
+    <h2 class="section-title orange">🟠 三、司法案件（1条）</h2>
+
+    <div class="item-card orange">
+      <h4>▸ "心源性猝死（死后推断）"成关键证据：保险公司拒赔败诉，终审判赔50万</h4>
+      <div class="meta">2026-02-25 · 山东省聊城市中级人民法院终审判决</div>
+      <p>货车司机谢某装完货在车内休息时去世，相关部门出具死亡证明，载明死亡原因为<strong>"心源性猝死（死后推断）"</strong>。保险公司以"非工作时间""未48小时内报案""家属拒绝解剖导致死因无法确定"为由拒赔。冠县法院一审判决支付50万元保险金，保险公司上诉。<strong>2026年2月25日，聊城中院作出终审判决：驳回上诉，维持原判。</strong></p>
+      <a href="https://www.toutiao.com/article/7621071131851751955" class="source-link" target="_blank">🔗 查看原文（今日头条）</a>
+    </div>
+
+    <!-- 四、群众诉求 -->
+    <h2 class="section-title purple">🟣 四、群众诉求（2条）</h2>
+
+    <div class="item-card purple">
+      <h4>▸ "医院把父亲的死亡证明开给了同居者，我作为唯一继承人却办不了事"</h4>
+      <div class="meta">2026-02-25 · 110法律咨询网网友求助</div>
+      <p>网友求助：父亲2月25日去世后，医院将死亡证明交给了其<strong>生前同居者（非近亲属）</strong>。作为唯一第一顺序继承人，因无证明无法办理遗产继承与保险理赔；持派出所开具的亲属关系证明要求补发，医院以"死亡证明只能开一次"为由拒绝。当地卫健委答复称新规（国卫规划发〔2026〕5号）7月1日才生效，要求提交书面举报材料——<strong>新旧政策衔接期的维权困境</strong>引发热议。</p>
+      <a href="https://ask.110.com/q16424335.html" class="source-link" target="_blank">🔗 查看原文（110法律咨询网）</a>
+    </div>
+
+    <div class="item-card purple">
+      <h4>▸ 同一个省：澄迈县12345答复与昌江县办证指引口径不一，家属被踢皮球</h4>
+      <div class="meta">澄迈县12345（2026-02-15）/ 昌江县卫健委（2024-12-23）</div>
+      <p><strong>昌江县（办证指引公告，2024-12-23）：</strong>在家中正常死亡由辖区乡镇卫生院或社区卫生服务中心签发，须提供村医调查情况、死者生前病历、身份证或户口簿、代办家属身份证，并现场填写死亡卡免责声明。<br><strong>澄迈县（12345答复，2026-02-15）：</strong>医疗机构外死亡的，由村（居）委会或派出所出具死亡证明，报当地卫生院或社区卫生服务中心核实登记上报后可出具医院的死亡证明。<br>两地口径明显不同，且澄迈县"由村（居）委会出具死亡证明"的表述，与2020年六部门《关于改进和规范基层群众性自治组织出具证明工作的指导意见》中<strong>居委会村委会不具备签发资质</strong>的规定存在冲突。</p>
+      <a href="https://12345.hainan.gov.cn/hnwsbsdt/hnwebsite/pages/default/appeal_details?guid=54d0806d-5ff3-4a15-82e4-deec0b528515" class="source-link" target="_blank">🔗 澄迈县12345答复（2026-02-15）</a>
+      &nbsp;
+      <a href="https://changjiang.hainan.gov.cn/changjiang/0400/202412/19f451f648074611a8e2769e8b83d03f.shtml" class="source-link" target="_blank">🔗 昌江县办证指引公告（2024-12-23）</a>
+      &nbsp;
+      <a href="https://www.gov.cn/zhengce/zhengceku/2020-04/27/content_5506457.htm" class="source-link" target="_blank">🔗 六部门指导意见：居委会村委会不具备签发资质</a>
+    </div>
+
+    <!-- 原文链接汇总 -->
+    <div class="links-summary">
+      <h3>📎 本期全部原文链接汇总</h3>
+      <div class="link-group">
+        <h4>🔵 政策动态（2条）</h4>
+        <ol>
+          <li><a href="https://www.nhc.gov.cn/guihuaxxs/c100133/202602/9daacc59b8494be99a04e1b1fcc69247.shtml" target="_blank">五部门《关于加强居民死亡医学证明信息登记和电子证照管理工作的通知》（国卫规划发〔2026〕5号）全文（国家卫健委）</a></li>
+          <li><a href="https://www.nhc.gov.cn/guihuaxxs/c100132/202602/61a1b698f5934b358e6223dbe1b552ce.shtml" target="_blank">国卫规划发〔2026〕5号文政策解读（国家卫健委）</a></li>
+        </ol>
+      </div>
+      <div class="link-group">
+        <h4>🔴 通报案例（1条）</h4>
+        <ol>
+          <li><a href="https://www.sohu.com/a/992124324_121106991" target="_blank">出具虚假证明文件案：直接死亡原因"焦虑"与实际情况"自杀溺亡"不一致（莆田疾控·搜狐转载）</a></li>
+          <li><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1788139386&amp;ver=6937&amp;signature=EaT-c*1qBDge5nxCbTmE3SPIC91p082C21cL0CZKMdc6Ckf*Ml7aARmXFg9gY5r2LL-fxJCdZ2XbuG6fYMoL4qcSETeV94Go*5qs8vfKUjcyzxgi9MS3liuquRH8ZgNr&amp;new=1" target="_blank">开具《居民死亡医学证明（推断）书》直接死亡原因与实际情况不一致案（健康阳泉）</a></li>
+        </ol>
+      </div>
+      <div class="link-group">
+        <h4>🟠 司法案件（1条）</h4>
+        <ol>
+          <li><a href="https://www.toutiao.com/article/7621071131851751955" target="_blank">司机车内心源性猝死，雇主责任险理赔遭拒，法院判保险公司付50万保险金（聊城中院终审）</a></li>
+        </ol>
+      </div>
+      <div class="link-group">
+        <h4>🟣 群众诉求（2条）</h4>
+        <ol>
+          <li><a href="https://ask.110.com/q16424335.html" target="_blank">医院将死亡证明开给同居者，唯一继承人无法继承、补办被拒（110法律咨询网）</a></li>
+          <li><a href="https://12345.hainan.gov.cn/hnwsbsdt/hnwebsite/pages/default/appeal_details?guid=54d0806d-5ff3-4a15-82e4-deec0b528515" target="_blank">澄迈县12345：医疗机构外死亡由村（居）委会或派出所出具死亡证明（2月15日答复）</a></li>
+          <li><a href="https://changjiang.hainan.gov.cn/changjiang/0400/202412/19f451f648074611a8e2769e8b83d03f.shtml" target="_blank">昌江黎族自治县卫健委关于死亡证办证指引公告（2024-12-23）</a></li>
+          <li><a href="https://www.gov.cn/zhengce/zhengceku/2020-04/27/content_5506457.htm" target="_blank">民政部等六部门《关于改进和规范基层群众性自治组织出具证明工作的指导意见》（民发〔2020〕20号）</a></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 免责声明 -->
+    <div class="disclaimer">
+      📢 <strong>免责声明：</strong>本期内容整理自政府公开文件、官方通报、裁判文书网、12345公开留言及公开媒体报道，仅作为行业业务学习、风险警示教育素材。不代表任何官方立场，不可直接作为业务办理、行政执法依据。具体工作严格按照本省、市卫健委及疾控中心现行有效文件执行。案例及群众诉求仅用于业务风险参考，不对单位及个人作主观评价。
+    </div>
+
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    证明签发 · 实务简报第002期 · 一线实务参考
+  </div>
+
+</div>
+</body>
+</html>
